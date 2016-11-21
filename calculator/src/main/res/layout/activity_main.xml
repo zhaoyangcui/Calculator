@@ -119,7 +119,6 @@
             <Button
                 android:id="@+id/btn_sin"
                 android:text="@string/sin" />
-
             <Button
                 android:id="@+id/btn_cos"
                 android:text="@string/cos" />

@@ -12,8 +12,12 @@ import android.widget.EditText;
 import static com.example.sunnny.calculator.R.id.btn_0;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    public static String LastInputStr = "";
+
     private OperatorListener operator_listener;
     private EditText editText;
+    private int deepOfSin = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         editText = (EditText) findViewById(R.id.txt);
         initButton();
-
     }
 
     private void initButton() {
         operator_listener = new OperatorListener(editText);
-
         Button bu_0 = (Button) findViewById(R.id.btn_0);
         bu_0.setOnClickListener(this);
         Button bu_1 = (Button) findViewById(R.id.btn_1);
@@ -87,14 +89,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_0:
                 if (current_str.equals("") || current_str.charAt(current_str.length() - 1) != 0) {
+                    LastInputStr += "0";
                     editText.setText(current_str + ((Button) v).getText().toString());
                 }
                 break;
+            case R.id.btn_sin:
+                deepOfSin++;
+
+                break;
             default:
                 editText.setText(current_str + ((Button) v).getText().toString());
+                LastInputStr += ((Button) v).getText().toString();
                 break;
         }
-
     }
 
     /**
